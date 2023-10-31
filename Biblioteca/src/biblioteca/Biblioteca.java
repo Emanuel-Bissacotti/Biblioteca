@@ -4,6 +4,11 @@
  */
 package biblioteca;
 
+import bens.Autor;
+import bens.Livro;
+import dao.AutorDAO;
+import dao.LivroDAO;
+
 /**
  *
  * @author laboratorio
@@ -14,7 +19,8 @@ public class Biblioteca {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       
     }
+
     
 }
