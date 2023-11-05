@@ -13,7 +13,7 @@ CREATE TABLE livro(
 	id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(50),
 	genero VARCHAR(20),
-    ano_publicacao INT,
+    ano_publicacao VARCHAR(5),
     quantidade INT,
     id_autor INT,
     FOREIGN KEY (id_autor) REFERENCES autor(id)

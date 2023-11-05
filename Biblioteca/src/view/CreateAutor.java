@@ -39,7 +39,7 @@ public class CreateAutor extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         txtNasimento = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
         jLabel1.setText("Adicionar novo Autor");

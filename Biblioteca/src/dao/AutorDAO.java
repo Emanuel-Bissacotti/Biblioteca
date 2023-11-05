@@ -34,7 +34,7 @@ public class AutorDAO {
             stmt.execute();
         }
         catch(SQLException e){
-            System.out.println("Erro ao inserir aluno: "+ e.getMessage());
+            System.out.println("Erro ao inserir autor: "+ e.getMessage());
         }
     }
     
@@ -46,6 +46,7 @@ public class AutorDAO {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             rs.first();
+            
             Autor a = new Autor(id, 
                                 rs.getString("nome"), 
                                 rs.getString("nacionalidade"), 
@@ -81,5 +82,20 @@ public class AutorDAO {
             System.out.println("Erro ao pegar todos os alunos: "+ e.getMessage());
         }
         return null;
+    }
+    
+    public void update(Autor autor){
+        try{
+            String sql = "UPDATE autor set nome=?, nacionalidade=?, data_nascimento=? WHERE id=?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1,autor.getNome());
+            stmt.setString(2, autor.getNacionalidade());
+            stmt.setString(3, autor.getData_nascimento());
+            stmt.setInt(4, autor.getId());
+            stmt.execute();
+        }catch(SQLException ex){
+            System.out.println("Erro ao atualiza Autor: "+ex.getMessage());
+        }
     }
 }
