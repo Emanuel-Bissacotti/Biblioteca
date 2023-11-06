@@ -49,7 +49,7 @@ public class MudLivro extends javax.swing.JFrame {
         cmbAutor = new javax.swing.JComboBox();
         btnPesquisar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtQuantidade = new javax.swing.JTextField();
 
@@ -97,10 +97,10 @@ public class MudLivro extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Deletar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletar.setText("Deletar");
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnDeletarActionPerformed(evt);
             }
         });
 
@@ -152,7 +152,7 @@ public class MudLivro extends javax.swing.JFrame {
                         .addGap(250, 250, 250)
                         .addComponent(btnSalvar)
                         .addGap(62, 62, 62)
-                        .addComponent(jButton3)))
+                        .addComponent(btnDeletar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -192,7 +192,7 @@ public class MudLivro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
-                    .addComponent(jButton3))
+                    .addComponent(btnDeletar))
                 .addGap(117, 117, 117))
         );
 
@@ -217,8 +217,7 @@ public class MudLivro extends javax.swing.JFrame {
             txtGenero.setText(livro.getGenero());
             txtAnoPublicacao.setText(livro.getAno_publicacao());
             txtQuantidade.setText(""+livro.getQuantidade());
-            System.out.println(livro.getAutor());
-            cmbAutor.setSelectedItem(livro.getAutor());
+            cmbAutor.setSelectedItem((Autor) livro.getAutor());
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "ID do livro não encontrado", "Pesquisa", JOptionPane.OK_OPTION);
         }
@@ -232,12 +231,12 @@ public class MudLivro extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Livro atualizado", "Atualizado", JOptionPane.OK_OPTION);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         LivroDAO lDAO = new LivroDAO();
         lDAO.excluirLivro(Integer.parseInt(txtId.getText()));
         JOptionPane.showMessageDialog(null, "Livro deletado", "Excluido", JOptionPane.OK_OPTION);
         clear();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void clear(){
         txtId.setText("");
@@ -292,10 +291,10 @@ public class MudLivro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cmbAutor;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

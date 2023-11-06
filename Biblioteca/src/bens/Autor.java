@@ -26,8 +26,6 @@ public class Autor {
         this.nacionalidade = nacionalidade;
         this.data_nascimento = data_nascimento;
     }
-    
-    
 
     public int getId() {
         return id;
@@ -66,5 +64,11 @@ public class Autor {
         return this.id + " - " + this.nome;
     }
     
-    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Autor autor = (Autor) o;
+        return id == autor.id;
+    }
 }
