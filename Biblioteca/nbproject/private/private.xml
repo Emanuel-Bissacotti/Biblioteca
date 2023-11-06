@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Emanuel/OneDrive/Área%20de%20Trabalho/ciencia%20da%20computação/4-semestre/LDS/Biblioteca/Biblioteca/src/view/MudLivro.java</file>
+            <file>file:/C:/Users/Emanuel/OneDrive/Área%20de%20Trabalho/ciencia%20da%20computação/4-semestre/LDS/Biblioteca/Biblioteca/src/view/MudAutor.java</file>
+            <file>file:/C:/Users/Emanuel/OneDrive/Área%20de%20Trabalho/ciencia%20da%20computação/4-semestre/LDS/Biblioteca/Biblioteca/src/view/InitialPage.java</file>
+            <file>file:/C:/Users/Emanuel/OneDrive/Área%20de%20Trabalho/ciencia%20da%20computação/4-semestre/LDS/Biblioteca/Biblioteca/src/view/CreateLivro.java</file>
             <file>file:/C:/Users/Emanuel/OneDrive/Área%20de%20Trabalho/ciencia%20da%20computação/4-semestre/LDS/Biblioteca/Biblioteca/src/dao/AutorDAO.java</file>
-            <file>file:/C:/Users/Emanuel/OneDrive/Área%20de%20Trabalho/ciencia%20da%20computação/4-semestre/LDS/Biblioteca/Biblioteca/src/conexao/Conexao.java</file>
+            <file>file:/C:/Users/Emanuel/OneDrive/Área%20de%20Trabalho/ciencia%20da%20computação/4-semestre/LDS/Biblioteca/Biblioteca/src/dao/LivroDAO.java</file>
+            <file>file:/C:/Users/Emanuel/OneDrive/Área%20de%20Trabalho/ciencia%20da%20computação/4-semestre/LDS/Biblioteca/Biblioteca/src/view/CreateAutor.java</file>
         </group>
     </open-files>
 </project-private>

@@ -9,6 +9,7 @@ import bens.Livro;
 import dao.AutorDAO;
 import dao.LivroDAO;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -80,6 +81,12 @@ public class CreateLivro extends javax.swing.JFrame {
         });
 
         jLabel6.setText("Autor:");
+
+        cmbAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAutorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,15 +169,22 @@ public class CreateLivro extends javax.swing.JFrame {
             );
             LivroDAO livroDAO = new LivroDAO();
             livroDAO.saveLivro(livro);
+            JOptionPane.showMessageDialog(null, "Livro Cadastrado", "Inserido", JOptionPane.OK_OPTION);
             clear();
         }catch(Exception e){
             System.out.println("Erro ao cadastar Livro: "+ e.getMessage());
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void cmbAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAutorActionPerformed
     private void clear(){
         txtTitulo.setText("");
-        
+        txtQuantidade.setText("");
         txtAnoPublicacao.setText("");
+        grpRdnGenero.clearSelection();
+        cmbAutor.setSelectedIndex(0);
     }
     
     private String genero(){

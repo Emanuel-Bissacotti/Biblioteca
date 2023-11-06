@@ -71,4 +71,71 @@ public class LivroDAO {
         }
     }
     
+    public void excluirLivroIDAutor(int idAutor){
+        try{
+            String sql = "DELETE FROM livro WHERE id_autor = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idAutor);
+            stmt.execute();
+        }catch(SQLException ex){
+            System.out.println("Erro ao deletar Livros do autor: "+ex.getMessage());
+        }
+    }
+    
+    public Livro getLivro(int id){
+        String sql = "SELECT * FROM livro WHERE id = ?";
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement(sql, 
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            rs.first();
+            
+            AutorDAO aDAO = new AutorDAO();
+            Autor a = aDAO.getAutor(rs.getInt("id_autor"));
+            
+            Livro l = new Livro(rs.getInt("id"), 
+                                rs.getString("titulo"), 
+                                rs.getString("genero"), 
+                                a, 
+                                rs.getString("ano_publicacao"), 
+                                rs.getInt("quantidade")
+                );
+            
+            return l;
+        }catch(SQLException ex){
+            System.out.println("Erro ao consultar livro: "+ ex.getMessage());
+            return null;
+        }
+    }
+    
+    public void update(Livro livro){
+        try{
+            String sql = "UPDATE livro set titulo = ?, genero = ?, ano_publicacao = ?, quantidade = ?, id_autor = ? WHERE id=?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1,livro.getTitulo());
+            stmt.setString(2, livro.getGenero());
+            stmt.setString(3, livro.getAno_publicacao());
+            stmt.setInt(4, livro.getQuantidade());
+            stmt.setInt(5, livro.getAutor().getId());
+            stmt.setInt(6, livro.getId());
+            stmt.execute();
+        }catch(SQLException ex){
+            System.out.println("Erro ao atualiza Autor: "+ex.getMessage());
+        }
+    }
+    
+    public void excluirLivro(int livroID){
+        try{
+                String sql = "DELETE FROM livro WHERE id=?";
+
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setInt(1, livroID);
+                stmt.execute();
+        }catch(SQLException ex){
+            System.out.println("Erro ao deletar livro: "+ex.getMessage());
+        }
+    }
 }

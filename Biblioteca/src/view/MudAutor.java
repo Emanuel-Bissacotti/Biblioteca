@@ -6,6 +6,8 @@ package view;
 
 import bens.Autor;
 import dao.AutorDAO;
+import dao.LivroDAO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,8 +43,8 @@ public class MudAutor extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtNasciento = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -71,14 +73,19 @@ public class MudAutor extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Salvar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("jButton3");
+        btnDeletar.setText("Deletar");
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,9 +116,9 @@ public class MudAutor extends javax.swing.JFrame {
                         .addComponent(btnPesquisar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(btnSalvar)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton3)
+                        .addComponent(btnDeletar)
                         .addGap(203, 203, 203))))
         );
         layout.setVerticalGroup(
@@ -142,8 +149,8 @@ public class MudAutor extends javax.swing.JFrame {
                     .addComponent(txtNasciento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnSalvar)
+                    .addComponent(btnDeletar))
                 .addGap(101, 101, 101))
         );
 
@@ -152,19 +159,33 @@ public class MudAutor extends javax.swing.JFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         AutorDAO aDAO = new AutorDAO();
-        Autor autor = aDAO.getAutor(Integer.parseInt(txtIDPes.getText()));
+        try{
+            Autor autor = aDAO.getAutor(Integer.parseInt(txtIDPes.getText()));
         
-        txtID.setText(""+autor.getId());
-        txtNome.setText(autor.getNome());
-        txtNasciento.setText(autor.getData_nascimento());
-        cmbNascionalidade.setSelectedItem(autor.getNacionalidade());
+            txtID.setText(""+autor.getId());
+            txtNome.setText(autor.getNome());
+            txtNasciento.setText(autor.getData_nascimento());
+            cmbNascionalidade.setSelectedItem(autor.getNacionalidade());
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "ID do autor não encontrado", "Pesquisa", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         AutorDAO aDAO = new AutorDAO();
         Autor autor = new Autor(Integer.parseInt(txtIDPes.getText()), txtNome.getText(), String.valueOf(cmbNascionalidade.getSelectedItem()), txtNasciento.getText());
         aDAO.update(autor);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        JOptionPane.showMessageDialog(null, "Autor atualizado", "Atualizado", JOptionPane.OK_OPTION);
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        LivroDAO lDAO = new LivroDAO();
+        lDAO.excluirLivroIDAutor(Integer.parseInt(txtID.getText()));
+        AutorDAO aDAO = new AutorDAO();
+        aDAO.excluirAutor(Integer.parseInt(txtID.getText()));
+        JOptionPane.showMessageDialog(null, "Autor e seus livros excluidos", "Excluido", JOptionPane.OK_OPTION);
+        clear();
+    }//GEN-LAST:event_btnDeletarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,10 +223,10 @@ public class MudAutor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cmbNascionalidade;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -217,4 +238,11 @@ public class MudAutor extends javax.swing.JFrame {
     private javax.swing.JTextField txtNasciento;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
+
+    private void clear() {
+        txtID.setText("");
+        txtNasciento.setText("");
+        txtNome.setText("");
+        cmbNascionalidade.setSelectedIndex(0);
+    }
 }

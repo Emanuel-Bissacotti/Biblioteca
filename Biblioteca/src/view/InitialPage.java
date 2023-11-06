@@ -115,7 +115,12 @@ public class InitialPage extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem6);
 
-        jMenuItem7.setText("jMenuItem7");
+        jMenuItem7.setText("Livro");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem7);
 
         jMenuBar1.add(jMenu7);
@@ -174,6 +179,13 @@ public class InitialPage extends javax.swing.JFrame {
         ma.setLocation(300, 300);
         ma.setResizable(false);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        MudLivro ml = new MudLivro();
+        ml.setVisible(true);
+        ml.setLocation(300, 300);
+        ml.setResizable(false);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments

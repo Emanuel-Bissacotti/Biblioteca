@@ -98,4 +98,16 @@ public class AutorDAO {
             System.out.println("Erro ao atualiza Autor: "+ex.getMessage());
         }
     }
+    
+    public void excluirAutor(int idAutor){
+        try{
+                String sql = "DELETE FROM autor WHERE id=?";
+
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setInt(1, idAutor);
+                stmt.execute();
+        }catch(SQLException ex){
+            System.out.println("Erro ao deletar autor: "+ex.getMessage());
+        }
+    }
 }
